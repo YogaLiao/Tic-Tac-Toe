@@ -5,9 +5,8 @@ console.log(resetButton)
 let button = document.querySelectorAll(".cell")
 console.log(button)
 let turn = 1;
-let input = document.querySelector("#init").value
-console.log(input)
-let init = input;
+let select = document.querySelector("#init")
+let init = "X";
 let player = init;
 let score1 = document.querySelector(".score1")
 score1.innerText = 0;
@@ -54,7 +53,7 @@ function playGame(event) {
         checkWin();
     }
     else {
-        if (player = "X") {
+        if (player == "X") {
             player = "O"
         }
         else {
@@ -138,7 +137,10 @@ function resetGame() {
         element.innerText = ""
     })
     turn = 1;
-    player = "init";
+    let input = select.options[select.selectedIndex].text
+    console.log(input)
+    init = input;
+    player = init;
     resetButton.style.display = "none";
     score1.innerText = 0;
     score2.innerText = 0;
@@ -150,7 +152,10 @@ function newGame() {
         element.innerText = ""
     })
     turn = 1;
-    player = "init";
+    let input = select.options[select.selectedIndex].text
+    console.log(input)
+    init = input;
+    player = init;
     newButton.style.display = "none";
     gameover.style.display = "none"
 
@@ -158,6 +163,10 @@ function newGame() {
 
 startButton.addEventListener("click", (event) => {
     event.preventDefault();
+    let input = select.options[select.selectedIndex].text
+    console.log(input)
+    init = input;
+    player = init;
     player1Name.innerText = player1.value
     player2Name.innerText = player2.value
     if (player1Name.innerText == "") {
@@ -169,20 +178,32 @@ startButton.addEventListener("click", (event) => {
     document.querySelector(".turns").style.display = "block";
     document.querySelector(".score").style.display = "block";
     document.querySelector(".turn").innerText = player;
-})
-
-button.forEach(element => {
-    element.addEventListener("click", (event) => {
-        event.preventDefault();
-        // console.log(event)
-        if (event.target.innerText == "X" || event.target.innerText == "O") {
-            alert("This cell is occupied")
-        }
-        else {
-            playGame(event)
-        }
+    button.forEach(element => {
+        element.addEventListener("click", (event) => {
+            event.preventDefault();
+            // console.log(event)
+            if (event.target.innerText == "X" || event.target.innerText == "O") {
+                alert("This cell is occupied")
+            }
+            else {
+                playGame(event)
+            }
+        })
     })
 })
+
+// button.forEach(element => {
+//     element.addEventListener("click", (event) => {
+//         event.preventDefault();
+//         // console.log(event)
+//         if (event.target.innerText == "X" || event.target.innerText == "O") {
+//             alert("This cell is occupied")
+//         }
+//         else {
+//             playGame(event)
+//         }
+//     })
+// })
 
 
 
